@@ -56,24 +56,22 @@
     renderAnalytics();renderAttendance();bindMain();
   }
   function analyticsMarkup(){
-    return \`
-      <section class="analytics-card" id="analytics-box">
-  <div class="analytics-grid">
-    <div class="analytics-visual">
-      <div class="donut" id="analytics-donut" style="--present-end:0deg;--absent-angle:0deg;--leave-angle:0deg">
-        <div class="donut-center"><strong id="analytics-present-total">0 / 0</strong><span>present today</span></div>
-      </div>
-      <div class="analytics-copy">
-        <span class="kicker">Today at a glance</span>
-        <h3>Attendance pulse</h3>
-        <p>See who is in, who is out, who is on leave, and how many still need a status.</p>
-        <div class="metric-list" id="analytics-metrics"></div>
-      </div>
-    </div>
-  </div>
-  <div class="analytics-foot"><span>Coverage <b id="analytics-coverage">0%</b></span><span>Total people <b id="analytics-total">0</b></span></div>
-</section>
-    \`;
+    return '<section class="analytics-card" id="analytics-box">'+
+      '<div class="analytics-grid">'+
+        '<div class="analytics-visual">'+
+          '<div class="donut" id="analytics-donut" style="--present-end:0deg;--absent-angle:0deg;--leave-angle:0deg">'+
+            '<div class="donut-center"><strong id="analytics-present-total">0 / 0</strong><span>present today</span></div>'+
+          '</div>'+
+          '<div class="analytics-copy">'+
+            '<span class="kicker">Today at a glance</span>'+
+            '<h3>Attendance pulse</h3>'+
+            '<p>See who is in, who is out, who is on leave, and how many still need a status.</p>'+
+            '<div class="metric-list" id="analytics-metrics"></div>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="analytics-foot"><span>Coverage <b id="analytics-coverage">0%</b></span><span>Total people <b id="analytics-total">0</b></span></div>'+
+    '</section>';
   }
   function renderAnalytics(){
     const total=state.employees.length;
