@@ -1,0 +1,12 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "employees": {
+      ".indexOn": ["active", "created_at"]
+    },
+    "attendance": {
+      ".indexOn": ["attendance_date", "employee_id"]
+    }
+  }
+}
