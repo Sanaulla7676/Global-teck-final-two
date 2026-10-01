@@ -7,6 +7,9 @@
     },
     "attendance": {
       ".indexOn": ["attendance_date", "employee_id"]
+    },
+    "payments": {
+      ".indexOn": ["payment_date", "employee_id", "created_at"]
     }
   }
 }

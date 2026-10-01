@@ -22,7 +22,13 @@ export default async function handler(req, res) {
     const attSnap = await database.ref("attendance").orderByChild("attendance_date").equalTo(today).once("value");
     const attendance = toArray(attSnap);
 
-    return res.status(200).json({ configured: true, employees, attendance, today });
+    // Load payments
+    const paySnap = await database.ref("payments").once("value");
+    const payments = toArray(paySnap).sort((a, b) =>
+      (b.payment_date || "").localeCompare(a.payment_date || "") || (b.created_at || 0) - (a.created_at || 0)
+    );
+
+    return res.status(200).json({ configured: true, employees, attendance, payments, today });
   } catch (e) {
     console.error(e);
     return res.status(500).json({ error: "Database connection failed." });

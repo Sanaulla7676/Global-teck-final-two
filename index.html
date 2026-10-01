@@ -7,7 +7,7 @@
 <title>Dayline · Attendance</title>
 <style>
 :root{--purple:#6d28d9;--purple2:#8b5cf6;--ink:#1f2130;--muted:#777b8c;--line:#eceaf2;--soft:#faf9fd;--green:#15803d;--greenbg:#e9f8ef;--red:#be123c;--redbg:#fff0f3;--amber:#a16207;--amberbg:#fff8dc;--shadow:0 20px 70px rgba(55,27,120,.10)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f1eff5;color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}button,input{font:inherit}button{cursor:pointer}img{display:block}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f1eff5;color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button{cursor:pointer}img{display:block}
 .app{min-height:100vh;max-width:1180px;margin:auto;background:#fff;box-shadow:var(--shadow)}
 .hero{position:relative;overflow:hidden;min-height:360px;padding:20px 22px 60px;color:#fff;background:radial-gradient(circle at 15% 18%,rgba(255,255,255,.24),transparent 32%),radial-gradient(circle at 88% 0%,rgba(255,255,255,.15),transparent 24%),linear-gradient(155deg,#4c18ab,#7d45ea 52%,#cdb9fa)}
 .hero:after{content:"";position:absolute;left:-8%;right:-8%;bottom:-125px;height:190px;border-radius:50% 50% 0 0/52% 52% 0 0;background:#fff}
@@ -19,7 +19,19 @@
 .btn{border:0;border-radius:12px;padding:10px 13px;font-size:11px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn.primary{color:#fff;background:var(--purple);box-shadow:0 10px 20px rgba(109,40,217,.18)}.btn.secondary{color:#3b3d4a;background:#f2f1f6}.btn.danger{color:var(--red);background:var(--redbg)}
 .att-box{overflow:hidden;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 12px 34px rgba(50,28,95,.05)}.att-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px 17px 14px;border-bottom:1px solid var(--line)}.att-head strong{font-size:14px}.att-head span{display:block;margin-top:3px;font-size:10px;color:var(--muted)}.save-state{padding:6px 8px;border-radius:999px;background:#f5f4f8;color:#686c7b;font-size:9px;white-space:nowrap}
 .row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid #f0eef4}.row:last-child{border-bottom:0}.person{display:flex;align-items:center;gap:10px;min-width:0;flex:1;text-align:left;background:transparent;border:0;padding:0}.avatar{width:43px;height:43px;flex:none;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:linear-gradient(145deg,#c2aff6,#7545dc);color:#fff;font-weight:900;font-size:12px}.avatar img{width:100%;height:100%;object-fit:cover}.name{min-width:0}.name b{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.name small{display:block;margin-top:3px;color:var(--muted);font-size:9px}.att-actions{display:flex;gap:6px}.status-btn{min-width:55px;border:1px solid #e2e0e9;border-radius:10px;background:#fff;color:#6a6d7d;padding:8px 9px;font-size:10px;font-weight:900}.status-btn.active-present{background:var(--greenbg);border-color:#a8dbba;color:var(--green)}.status-btn.active-absent{background:var(--redbg);border-color:#efb8c5;color:var(--red)}.status-btn.active-leave{background:var(--amberbg);border-color:#eed891;color:var(--amber)}
-.people-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.person-card{border:1px solid var(--line);border-radius:19px;background:#fff;padding:14px;min-height:176px;text-align:left;transition:.15s ease}.person-card:hover{transform:translateY(-2px);box-shadow:0 15px 35px rgba(50,25,100,.07)}.card-top{display:flex;justify-content:space-between;align-items:flex-start}.big{width:68px;height:68px;font-size:16px}.dot{width:8px;height:8px;border-radius:50%;background:#c8c6cf;box-shadow:0 0 0 4px #f1f0f5}.dot.present{background:#30a66a;box-shadow:0 0 0 4px #e7f8ef}.dot.absent{background:#d25668;box-shadow:0 0 0 4px #fdecef}.dot.leave{background:#bf8a18;box-shadow:0 0 0 4px #fff6d9}.person-card b{display:block;margin-top:13px;font-size:12px}.person-card small{display:block;margin-top:3px;font-size:9px;color:var(--muted)}.link{display:inline-flex;margin-top:12px;color:var(--purple);font-size:9px;font-weight:900}
+.people-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.person-card{border:1px solid var(--line);border-radius:19px;background:#fff;padding:14px;min-height:176px;text-align:left;transition:.15s ease;position:relative}.person-card:hover{transform:translateY(-2px);box-shadow:0 15px 35px rgba(50,25,100,.07)}.card-top{display:flex;justify-content:space-between;align-items:flex-start}.big{width:68px;height:68px;font-size:16px}.dot{width:8px;height:8px;border-radius:50%;background:#c8c6cf;box-shadow:0 0 0 4px #f1f0f5}.dot.present{background:#30a66a;box-shadow:0 0 0 4px #e7f8ef}.dot.absent{background:#d25668;box-shadow:0 0 0 4px #fdecef}.dot.leave{background:#bf8a18;box-shadow:0 0 0 4px #fff6d9}.person-card b{display:block;margin-top:13px;font-size:12px}.person-card small{display:block;margin-top:3px;font-size:9px;color:var(--muted)}.link{display:inline-flex;margin-top:12px;color:var(--purple);font-size:9px;font-weight:900}
+.card-del-btn{width:26px;height:26px;border:1px solid #fed7df;border-radius:8px;background:#fff5f7;color:var(--red);display:inline-flex;align-items:center;justify-content:center;padding:0;transition:all .15s ease}.card-del-btn:hover{background:var(--red);color:#fff;border-color:var(--red);transform:scale(1.05)}
+.pay-filter-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:14px 17px;border-bottom:1px solid var(--line);background:#faf9fd}
+.pay-filters{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.filter-pill{border:1px solid #dddbe4;background:#fff;color:#5a5d6e;padding:6px 11px;border-radius:999px;font-size:10px;font-weight:900;transition:.15s}
+.filter-pill.active{background:var(--purple);color:#fff;border-color:var(--purple)}
+.pay-date-input{padding:5px 9px;border:1px solid #dddbe4;border-radius:10px;font-size:10px;background:#fff;outline:none;font-weight:700}
+.pay-summary-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--greenbg);color:var(--green);font-size:11px;font-weight:900}
+.pay-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid #f0eef4}.pay-row:last-child{border-bottom:0}
+.pay-info{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
+.pay-right{display:flex;align-items:center;gap:10px;flex:none}
+.pay-amount{font-size:13px;font-weight:900;color:var(--ink);letter-spacing:-.03em}
+.pay-date-tag{font-size:9px;color:var(--muted);background:#f2f1f6;padding:3px 7px;border-radius:6px;font-weight:800}
 .analytics-card{overflow:hidden;margin:0 0 20px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#fff,#fbf9ff);box-shadow:0 12px 34px rgba(50,28,95,.05)}
 .analytics-grid{display:grid;grid-template-columns:minmax(280px,1.1fr) minmax(230px,.9fr);gap:20px;align-items:center;padding:18px}
 .analytics-visual{display:flex;align-items:center;gap:20px;min-width:0}
@@ -30,8 +42,8 @@
 .metric-list{display:grid;gap:8px;margin-top:14px}.metric{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;padding:8px 9px;border:1px solid #efedf4;border-radius:11px;background:#fff}.metric-dot{width:7px;height:7px;border-radius:50%}.metric-dot.p{background:var(--green)}.metric-dot.a{background:var(--red)}.metric-dot.l{background:var(--amber)}.metric-dot.u{background:#c8c5d0}.metric b{font-size:10px}.metric small{font-size:8px;color:var(--muted)}.metric strong{font-size:11px}
 .analytics-foot{display:flex;justify-content:space-between;gap:12px;padding:10px 18px;border-top:1px solid var(--line);background:#fff;font-size:9px;color:var(--muted)}.analytics-foot b{color:var(--ink)}
 .empty{padding:32px 16px;text-align:center;color:var(--muted)}.empty b{display:block;margin:8px 0 4px;color:var(--ink);font-size:13px}.empty span{font-size:10px}
-.bottom{position:fixed;display:none;left:50%;bottom:10px;transform:translateX(-50%);z-index:60;width:min(420px,calc(100vw - 20px));padding:6px;border:1px solid #e6e3ed;border-radius:18px;background:rgba(255,255,255,.9);backdrop-filter:blur(18px);box-shadow:0 16px 35px rgba(35,20,74,.14)}.bottom button{flex:1;border:0;background:transparent;border-radius:12px;padding:8px 4px;color:#767988;font-size:9px;font-weight:900}.bottom button.active{background:#f0ebff;color:var(--purple)}
-.overlay{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(24,12,42,.45);backdrop-filter:blur(8px)}.modal{width:min(520px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:20px;border-radius:24px;background:#fff;box-shadow:0 35px 90px rgba(20,10,40,.28)}.modal-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.modal-head h3{margin:5px 0 0;font-size:24px;letter-spacing:-.055em}.icon-btn{width:38px;height:38px;border:0;border-radius:12px;background:#f3f1f6;color:#4a4c59;font-size:18px}.field{display:block;margin-top:14px;font-size:10px;font-weight:900;color:#4f5262}.field input{width:100%;margin-top:5px;padding:11px 12px;border:1px solid #dddbe4;border-radius:12px;outline:none}.field input:focus{border-color:#b7a2ef;box-shadow:0 0 0 4px #efeaff}.photo-line{display:flex;align-items:center;gap:13px;margin:18px 0 5px;padding:12px;border:1px solid var(--line);border-radius:16px;background:#fbfaff}.photo-actions{display:flex;flex-direction:column;gap:6px}.file-btn{border:0;background:transparent;padding:0;text-align:left;color:var(--purple);font-size:10px;font-weight:900}.modal-actions{display:flex;justify-content:space-between;gap:9px;margin-top:20px}.modal-right{display:flex;gap:7px;margin-left:auto}.error{margin-top:10px;padding:9px 10px;border-radius:11px;background:var(--redbg);color:var(--red);font-size:10px}.cal-person{display:flex;align-items:center;gap:11px}.cal-person h3{margin:0;font-size:15px}.cal-person p{margin:3px 0 0;font-size:9px;color:var(--muted)}.cal-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:22px 0 12px}.cal-nav h4{margin:0;font-size:17px}.cal-nav .nav{display:flex;gap:6px}.day-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.week,.days{display:contents}.week span{text-align:center;font-size:8px;color:#989aa8;font-weight:900;padding-bottom:3px}.day{min-height:41px;border:1px solid #eeecf3;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:#fff}.day.blank{visibility:hidden}.day span{font-size:10px;font-weight:900}.day i{width:5px;height:5px;border-radius:50%;background:#d0cdda}.day.present{background:var(--greenbg);border-color:#ccebd8}.day.present i{background:#26a05d}.day.absent{background:var(--redbg);border-color:#f3cbd3}.day.absent i{background:#cf4c63}.day.leave{background:var(--amberbg);border-color:#f0df9e}.day.leave i{background:#b67b10}.legend{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px;font-size:9px;color:#686b79}.legend span{display:inline-flex;align-items:center;gap:5px}.legend i{width:6px;height:6px;border-radius:50%}.legend .p{background:#26a05d}.legend .a{background:#cf4c63}.legend .l{background:#b67b10}.toast{position:fixed;left:50%;bottom:74px;transform:translateX(-50%);z-index:140;max-width:calc(100vw - 24px);padding:10px 13px;border-radius:999px;background:#21172f;color:#fff;font-size:10px;font-weight:900;box-shadow:0 14px 32px rgba(26,12,46,.25)}.hidden{display:none!important}
+.bottom{position:fixed;display:none;left:50%;bottom:10px;transform:translateX(-50%);z-index:60;width:min(440px,calc(100vw - 20px));padding:6px;border:1px solid #e6e3ed;border-radius:18px;background:rgba(255,255,255,.9);backdrop-filter:blur(18px);box-shadow:0 16px 35px rgba(35,20,74,.14)}.bottom button{flex:1;border:0;background:transparent;border-radius:12px;padding:8px 4px;color:#767988;font-size:9px;font-weight:900}.bottom button.active{background:#f0ebff;color:var(--purple)}
+.overlay{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(24,12,42,.45);backdrop-filter:blur(8px)}.modal{width:min(520px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:20px;border-radius:24px;background:#fff;box-shadow:0 35px 90px rgba(20,10,40,.28)}.modal-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.modal-head h3{margin:5px 0 0;font-size:24px;letter-spacing:-.055em}.icon-btn{width:38px;height:38px;border:0;border-radius:12px;background:#f3f1f6;color:#4a4c59;font-size:18px}.field{display:block;margin-top:14px;font-size:10px;font-weight:900;color:#4f5262}.field input,.field select{width:100%;margin-top:5px;padding:11px 12px;border:1px solid #dddbe4;border-radius:12px;outline:none;background:#fff}.field input:focus,.field select:focus{border-color:#b7a2ef;box-shadow:0 0 0 4px #efeaff}.photo-line{display:flex;align-items:center;gap:13px;margin:18px 0 5px;padding:12px;border:1px solid var(--line);border-radius:16px;background:#fbfaff}.photo-actions{display:flex;flex-direction:column;gap:6px}.file-btn{border:0;background:transparent;padding:0;text-align:left;color:var(--purple);font-size:10px;font-weight:900}.modal-actions{display:flex;justify-content:space-between;gap:9px;margin-top:20px}.modal-right{display:flex;gap:7px;margin-left:auto}.error{margin-top:10px;padding:9px 10px;border-radius:11px;background:var(--redbg);color:var(--red);font-size:10px}.cal-person{display:flex;align-items:center;gap:11px}.cal-person h3{margin:0;font-size:15px}.cal-person p{margin:3px 0 0;font-size:9px;color:var(--muted)}.cal-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:22px 0 12px}.cal-nav h4{margin:0;font-size:17px}.cal-nav .nav{display:flex;gap:6px}.day-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.week,.days{display:contents}.week span{text-align:center;font-size:8px;color:#989aa8;font-weight:900;padding-bottom:3px}.day{min-height:41px;border:1px solid #eeecf3;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:#fff}.day.blank{visibility:hidden}.day span{font-size:10px;font-weight:900}.day i{width:5px;height:5px;border-radius:50%;background:#d0cdda}.day.present{background:var(--greenbg);border-color:#ccebd8}.day.present i{background:#26a05d}.day.absent{background:var(--redbg);border-color:#f3cbd3}.day.absent i{background:#cf4c63}.day.leave{background:var(--amberbg);border-color:#f0df9e}.day.leave i{background:#b67b10}.legend{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px;font-size:9px;color:#686b79}.legend span{display:inline-flex;align-items:center;gap:5px}.legend i{width:6px;height:6px;border-radius:50%}.legend .p{background:#26a05d}.legend .a{background:#cf4c63}.legend .l{background:#b67b10}.toast{position:fixed;left:50%;bottom:74px;transform:translateX(-50%);z-index:140;max-width:calc(100vw - 24px);padding:10px 13px;border-radius:999px;background:#21172f;color:#fff;font-size:10px;font-weight:900;box-shadow:0 14px 32px rgba(26,12,46,.25)}.hidden{display:none!important}
 @media(max-width:820px){.people-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.analytics-grid{grid-template-columns:1fr}.analytics-visual{justify-content:center}}
 @media(max-width:640px){body{background:#fff}.hero{min-height:365px;padding:18px 17px 56px}.hero-main{padding-top:40px}.content{padding:5px 14px 105px}.hero h1{font-size:49px}.hero p{font-size:13px}.hero-stats{max-width:none}.hero-stat{padding:12px}.people-grid{grid-template-columns:1fr 1fr}.section-head h2{font-size:20px}.att-head{align-items:flex-start}.bottom{display:flex}.row{padding:11px}.status-btn{min-width:52px;padding:8px}.person-card{min-height:164px}.photo-line{align-items:flex-start}}
 @media(max-width:410px){.donut{width:156px;height:156px}.donut-center strong{font-size:30px}.analytics-visual{gap:13px}.analytics-grid{padding:14px}.people-grid{grid-template-columns:1fr}.att-actions{gap:4px}.status-btn{min-width:48px;padding:8px 7px}.hero h1{font-size:45px}.hero-stat strong{font-size:19px}}
@@ -42,18 +54,18 @@
 <script>
 (() => {
   const $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])), today=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata'}).format(new Date()), initials=n=>String(n||'?').split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()||'?';
-  const state={employees:[],attendance:{},configured:false,local:false,selected:null,month:new Date(new Date().getFullYear(),new Date().getMonth(),1)};
+  const state={employees:[],attendance:{},payments:[],paymentFilter:'all',configured:false,local:false,selected:null,month:new Date(new Date().getFullYear(),new Date().getMonth(),1)};
   function avatar(p,cls=''){return p.photo_data?'<div class="avatar '+cls+'"><img src="'+esc(p.photo_data)+'" alt=""></div>':'<div class="avatar '+cls+'">'+esc(initials(p.name))+'</div>'}
   function toast(msg){const r=$('#toast-root');r.innerHTML='<div class="toast">'+esc(msg)+'</div>';setTimeout(()=>r.innerHTML='',2200)}
   async function api(url,opts={}){const res=await fetch(url,{headers:{'Content-Type':'application/json',...(opts.headers||{})},...opts});const data=await res.json().catch(()=>({}));if(!res.ok){if(res.status===401)throw new Error('AUTH');throw new Error(data.error||'Request failed')}return data}
-  function saveLocal(){localStorage.setItem('dayline_people',JSON.stringify(state.employees));localStorage.setItem('dayline_attendance',JSON.stringify(state.attendance))}
-  function loadLocal(){try{state.employees=JSON.parse(localStorage.getItem('dayline_people')||'[]');state.attendance=JSON.parse(localStorage.getItem('dayline_attendance')||'{}')}catch{state.employees=[];state.attendance={}}}
-  async function bootstrap(){try{const d=await api('/api/bootstrap');state.configured=!!d.configured;state.local=!d.configured;state.employees=d.employees||[];state.attendance=Object.fromEntries((d.attendance||[]).map(x=>[x.employee_id,x.status]));if(state.local)loadLocal();render()}catch(e){if(e.message==='AUTH'){renderLogin();return}state.local=true;loadLocal();render();toast('Server unavailable. Preview mode is active.')}}
+  function saveLocal(){localStorage.setItem('dayline_people',JSON.stringify(state.employees));localStorage.setItem('dayline_attendance',JSON.stringify(state.attendance));localStorage.setItem('dayline_payments',JSON.stringify(state.payments))}
+  function loadLocal(){try{state.employees=JSON.parse(localStorage.getItem('dayline_people')||'[]');state.attendance=JSON.parse(localStorage.getItem('dayline_attendance')||'{}');state.payments=JSON.parse(localStorage.getItem('dayline_payments')||'[]')}catch{state.employees=[];state.attendance={};state.payments=[]}}
+  async function bootstrap(){try{const d=await api('/api/bootstrap');state.configured=!!d.configured;state.local=!d.configured;state.employees=d.employees||[];state.attendance=Object.fromEntries((d.attendance||[]).map(x=>[x.employee_id,x.status]));state.payments=d.payments||[];if(state.local)loadLocal();render()}catch(e){if(e.message==='AUTH'){renderLogin();return}state.local=true;loadLocal();render();toast('Server unavailable. Preview mode is active.')}}
   async function signIn(pin){await api('/api/auth',{method:'POST',body:JSON.stringify({pin})});bootstrap()}
   function renderLogin(){document.getElementById('app').innerHTML='<main style="min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(160deg,#4b19a8,#a581ee)"><section style="width:min(410px,100%);padding:24px;border-radius:26px;background:#fff;box-shadow:0 30px 90px rgba(20,8,40,.22)"><div class="logo" style="color:#6d28d9"><span>day</span>line</div><span class="eyebrow muted" style="margin-top:24px">Owner access</span><h1 style="margin:8px 0;font-size:34px;letter-spacing:-.06em">Welcome back.</h1><p class="muted" style="font-size:12px;line-height:1.55">Enter the owner PIN to open the attendance dashboard.</p><form id="login-form"><label class="field">PIN<input id="pin" type="password" inputmode="numeric" autocomplete="current-password" placeholder="Enter PIN" required></label><div id="login-error" class="error hidden"></div><button class="btn primary" style="width:100%;margin-top:16px" type="submit">Open dashboard</button></form></section></main>';$('#login-form').onsubmit=async e=>{e.preventDefault();try{await signIn($('#pin').value)}catch(err){const x=$('#login-error');x.textContent=err.message==='AUTH'?'That PIN is not correct.':err.message;x.classList.remove('hidden')}}}
   function render(){const p=Object.values(state.attendance),present=p.filter(x=>x==='present').length,absent=p.filter(x=>x==='absent').length,leave=p.filter(x=>x==='leave').length;
-    document.getElementById('app').innerHTML='<div class="app"><header class="hero" id="top"><div class="hero-grid"></div><div class="topbar"><div class="logo"><span>day</span>line</div><div class="pill">'+(state.local?'Preview mode':'Neon connected')+'</div></div><div class="hero-main"><span class="eyebrow">Small team attendance</span><h1>Know who is <em>in.</em><br>Every morning.</h1><p>Mark the day in seconds, keep every employee separate, and open a clean monthly calendar whenever you need the history.</p><div class="hero-stats"><div class="hero-stat"><span>Present</span><strong>'+present+'</strong></div><div class="hero-stat"><span>Absent</span><strong>'+absent+'</strong></div><div class="hero-stat"><span>Leave</span><strong>'+leave+'</strong></div><div class="hero-stat"><span>People</span><strong>'+state.employees.length+'</strong></div></div></div></header><main class="content"><div class="notice"><div>●</div><div><b>Morning flow.</b><br>Tap <b>Present</b>, <b>Absent</b>, or <b>Leave</b>. Changes save immediately.'+(state.local?' This browser is using local preview storage because Neon is not configured in Vercel yet.':'')+'</div></div>'+analyticsMarkup()+'<section><div class="section-head"><div><span class="eyebrow muted">Today · '+esc(today())+'</span><h2>Mark attendance</h2></div><button class="btn primary" id="add-person">＋ Add person</button></div><div class="att-box" id="att-box"></div></section><section id="people"><div class="section-head"><div><span class="eyebrow muted">People</span><h2>Every person, their own calendar.</h2></div><span class="count muted">'+state.employees.length+' profiles</span></div><div class="people-grid">'+(state.employees.length?state.employees.map(personCard).join(''):'<div class="att-box empty" style="grid-column:1/-1"><b>Your team is empty</b><span>Add your first employee above.</span></div>')+'</div></section></main><nav class="bottom"><button class="active" id="nav-today">Today</button><button id="nav-people">People</button><button id="nav-add">＋ Add</button></nav></div>';
-    renderAnalytics();renderAttendance();bindMain();
+    document.getElementById('app').innerHTML='<div class="app"><header class="hero" id="top"><div class="hero-grid"></div><div class="topbar"><div class="logo"><span>day</span>line</div><div class="pill">'+(state.local?'Preview mode':'Cloud connected')+'</div></div><div class="hero-main"><span class="eyebrow">Small team attendance</span><h1>Know who is <em>in.</em><br>Every morning.</h1><p>Mark the day in seconds, keep every employee separate, and open a clean monthly calendar whenever you need the history.</p><div class="hero-stats"><div class="hero-stat"><span>Present</span><strong>'+present+'</strong></div><div class="hero-stat"><span>Absent</span><strong>'+absent+'</strong></div><div class="hero-stat"><span>Leave</span><strong>'+leave+'</strong></div><div class="hero-stat"><span>People</span><strong>'+state.employees.length+'</strong></div></div></div></header><main class="content"><div class="notice"><div>●</div><div><b>Morning flow.</b><br>Tap <b>Present</b>, <b>Absent</b>, or <b>Leave</b>. Changes save immediately.'+(state.local?' This browser is using local preview storage.':'')+'</div></div>'+analyticsMarkup()+'<section><div class="section-head"><div><span class="eyebrow muted">Today · '+esc(today())+'</span><h2>Mark attendance</h2></div><button class="btn primary" id="add-person">＋ Add person</button></div><div class="att-box" id="att-box"></div></section><section id="people"><div class="section-head"><div><span class="eyebrow muted">People</span><h2>Every person, their own calendar.</h2></div><span class="count muted">'+state.employees.length+' profiles</span></div><div class="people-grid">'+(state.employees.length?state.employees.map(personCard).join(''):'<div class="att-box empty" style="grid-column:1/-1"><b>Your team is empty</b><span>Add your first employee above.</span></div>')+'</div></section><section id="payments" style="margin-top:28px"><div class="section-head"><div><span class="eyebrow muted">Finance · Date-wise</span><h2>Payments made</h2></div><button class="btn primary" id="add-payment-btn">＋ Add payment</button></div><div class="att-box" id="pay-box"></div></section></main><nav class="bottom"><button class="active" id="nav-today">Today</button><button id="nav-people">People</button><button id="nav-payments">Payments</button><button id="nav-add">＋ Add</button></nav></div>';
+    renderAnalytics();renderAttendance();renderPayments();bindMain();
   }
   function analyticsMarkup(){
     return '<section class="analytics-card" id="analytics-box">'+
@@ -104,14 +116,246 @@
     box.innerHTML='<div class="att-head"><div><strong>Today\'s team</strong><span>One tap per person. You can change it later.</span></div><span class="save-state">'+(state.local?'Saved here':'Saved')+'</span></div>'+state.employees.map(p=>{const s=state.attendance[p.id]||'';return '<div class="row"><button class="person" data-edit="'+p.id+'">'+avatar(p)+'<span class="name"><b>'+esc(p.name)+'</b><small>'+esc(p.role||'Team member')+'</small></span></button><div class="att-actions"><button class="status-btn '+(s==='present'?'active-present':'')+'" data-mark="present" data-id="'+p.id+'">Present</button><button class="status-btn '+(s==='absent'?'active-absent':'')+'" data-mark="absent" data-id="'+p.id+'">Absent</button><button class="status-btn '+(s==='leave'?'active-leave':'')+'" data-mark="leave" data-id="'+p.id+'">Leave</button></div></div>'}).join('');
     box.querySelectorAll('[data-mark]').forEach(b=>b.onclick=()=>mark(b.dataset.id,b.dataset.mark));box.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>openEmployee(b.dataset.edit))
   }
-  function personCard(p){const s=state.attendance[p.id]||'';return '<button class="person-card" data-person="'+p.id+'"><div class="card-top">'+avatar(p,'big')+'<span class="dot '+s+'"></span></div><b>'+esc(p.name)+'</b><small>'+esc(p.role||'Team member')+'</small><span class="link">Open calendar →</span></button>'}
+  function personCard(p){
+    const s=state.attendance[p.id]||'';
+    return '<div class="person-card" data-person="'+p.id+'" style="cursor:pointer">'+
+      '<div class="card-top">'+
+        avatar(p,'big')+
+        '<div style="display:flex;align-items:center;gap:6px">'+
+          '<span class="dot '+s+'" title="Status: '+(s||'not marked')+'"></span>'+
+          '<button class="card-del-btn" data-del="'+p.id+'" data-name="'+esc(p.name)+'" title="Delete '+esc(p.name)+'" aria-label="Delete">'+
+            '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>'+
+          '</button>'+
+        '</div>'+
+      '</div>'+
+      '<b>'+esc(p.name)+'</b>'+
+      '<small>'+esc(p.role||'Team member')+'</small>'+
+      '<span class="link" style="margin-top:12px">Open calendar →</span>'+
+    '</div>';
+  }
+  function renderPayments(){
+    const box=$('#pay-box');
+    if(!box)return;
+    const filter=state.paymentFilter||'all';
+    let filtered=state.payments||[];
+    if(filter==='today'){
+      filtered=filtered.filter(p=>p.payment_date===today());
+    } else if(filter!=='all'){
+      filtered=filtered.filter(p=>p.payment_date===filter);
+    }
+    const sum=filtered.reduce((s,p)=>s+(Number(p.amount)||0),0);
+    const count=filtered.length;
+
+    const filterBar='<div class="pay-filter-bar">'+
+      '<div class="pay-filters">'+
+        '<button class="filter-pill '+(filter==='all'?'active':'')+'" id="pay-filter-all">All</button>'+
+        '<button class="filter-pill '+(filter==='today'?'active':'')+'" id="pay-filter-today">Today</button>'+
+        '<div style="display:flex;align-items:center;gap:5px;margin-left:4px">'+
+          '<span style="font-size:9px;color:var(--muted);font-weight:900">Date</span>'+
+          '<input type="date" id="pay-filter-date" class="pay-date-input" value="'+(filter!=='all'&&filter!=='today'?filter:today())+'">'+
+        '</div>'+
+      '</div>'+
+      '<span class="pay-summary-badge">'+
+        '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>'+
+        'Total: <b>₹ '+sum.toLocaleString('en-IN')+'</b> ('+count+')'+
+      '</span>'+
+    '</div>';
+
+    let listHtml='';
+    if(!filtered.length){
+      listHtml='<div class="empty"><b>No payments found.</b><span>No payments recorded for '+(filter==='all'?'any date':(filter==='today'?'today ('+today()+')':'date: '+filter))+'.</span><div style="margin-top:10px"><button class="btn secondary" id="pay-empty-add">＋ Add payment</button></div></div>';
+    } else {
+      listHtml=filtered.map(p=>{
+        const emp=state.employees.find(e=>e.id===p.employee_id);
+        const av=emp?avatar(emp):'<div class="avatar" style="background:#e8e5f2;color:var(--purple);font-size:11px">₹</div>';
+        return '<div class="pay-row">'+
+          '<div class="pay-info">'+
+            av+
+            '<div class="name">'+
+              '<b>'+esc(p.employee_name||(emp?emp.name:'Payment'))+'</b>'+
+              '<small>'+esc(p.notes||'Payment recorded')+'</small>'+
+            '</div>'+
+          '</div>'+
+          '<div class="pay-right">'+
+            '<span class="pay-date-tag">'+esc(p.payment_date)+'</span>'+
+            '<span class="pay-amount">₹ '+Number(p.amount||0).toLocaleString('en-IN')+'</span>'+
+            '<button class="card-del-btn" data-del-pay="'+esc(p.id)+'" data-amount="'+esc(p.amount)+'" title="Delete payment" aria-label="Delete payment">'+
+              '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>'+
+            '</button>'+
+          '</div>'+
+        '</div>';
+      }).join('');
+    }
+
+    box.innerHTML=filterBar+listHtml;
+
+    const btnAll=$('#pay-filter-all');
+    if(btnAll) btnAll.onclick=()=>{state.paymentFilter='all';renderPayments();};
+    const btnToday=$('#pay-filter-today');
+    if(btnToday) btnToday.onclick=()=>{state.paymentFilter='today';renderPayments();};
+    const dateInput=$('#pay-filter-date');
+    if(dateInput) dateInput.onchange=e=>{
+      if(e.target.value){
+        state.paymentFilter=e.target.value;
+        renderPayments();
+      }
+    };
+    const emptyAdd=$('#pay-empty-add');
+    if(emptyAdd) emptyAdd.onclick=()=>openPaymentModal();
+
+    box.querySelectorAll('[data-del-pay]').forEach(b=>{
+      b.onclick=e=>{
+        e.stopPropagation();
+        removePayment(b.dataset.delPay, b.dataset.amount);
+      };
+    });
+  }
+  function openPaymentModal(){
+    const defaultDate=(state.paymentFilter&&state.paymentFilter!=='all'&&state.paymentFilter!=='today')?state.paymentFilter:today();
+    const empOptions=state.employees.map(e=>'<option value="'+esc(e.id)+'">'+esc(e.name)+' ('+esc(e.role||'Team member')+')</option>').join('');
+    $('#modal-root').innerHTML=
+      '<div class="overlay"><section class="modal">'+
+        '<div class="modal-head">'+
+          '<div><span class="eyebrow muted">Finance</span><h3>Record payment</h3></div>'+
+          '<button class="icon-btn" id="close-pay-modal">×</button>'+
+        '</div>'+
+        '<label class="field">Payment date<input id="pay-form-date" type="date" value="'+defaultDate+'" required></label>'+
+        '<label class="field">Paid to'+
+          '<select id="pay-form-emp">'+
+            (empOptions?empOptions:'')+
+            '<option value="custom" '+(state.employees.length?'':'selected')+'>Other / General recipient</option>'+
+          '</select>'+
+        '</label>'+
+        '<div id="custom-name-wrap" class="field '+(state.employees.length?'hidden':'')+'">Recipient or Payee name<input id="pay-custom-name" placeholder="e.g. Raju or Supplies vendor"></div>'+
+        '<label class="field">Amount (₹)<input id="pay-form-amount" type="number" min="1" step="any" placeholder="e.g. 500" required></label>'+
+        '<label class="field">Reason / Note<input id="pay-form-notes" placeholder="e.g. Daily wage, Advance, Travel, Supplies"></label>'+
+        '<div id="pay-error" class="error hidden"></div>'+
+        '<div class="modal-actions">'+
+          '<span></span>'+
+          '<div class="modal-right">'+
+            '<button class="btn secondary" id="cancel-pay-modal">Cancel</button>'+
+            '<button class="btn primary" id="save-payment-btn">Save payment</button>'+
+          '</div>'+
+        '</div>'+
+      '</section></div>';
+
+    $('#close-pay-modal').onclick=closeModal;
+    $('#cancel-pay-modal').onclick=closeModal;
+    const empSelect=$('#pay-form-emp');
+    const customWrap=$('#custom-name-wrap');
+    if(empSelect){
+      empSelect.onchange=()=>{
+        if(empSelect.value==='custom') customWrap.classList.remove('hidden');
+        else customWrap.classList.add('hidden');
+      };
+    }
+    $('#save-payment-btn').onclick=savePayment;
+  }
+  async function savePayment(){
+    const date=$('#pay-form-date').value.trim();
+    const empVal=$('#pay-form-emp').value;
+    let empId=null;
+    let empName='';
+    if(empVal==='custom'){
+      empName=$('#pay-custom-name').value.trim()||'General';
+    } else {
+      empId=empVal;
+      const emp=state.employees.find(e=>e.id===empId);
+      empName=emp?emp.name:'General';
+    }
+    const amount=Number($('#pay-form-amount').value);
+    const notes=$('#pay-form-notes').value.trim();
+
+    if(!date){
+      const err=$('#pay-error');err.textContent='Date is required.';err.classList.remove('hidden');return;
+    }
+    if(isNaN(amount)||amount<=0){
+      const err=$('#pay-error');err.textContent='Please enter a valid amount.';err.classList.remove('hidden');return;
+    }
+
+    if(state.local){
+      const item={
+        id:'pay-'+Date.now(),
+        payment_date:date,
+        employee_id:empId,
+        employee_name:empName,
+        amount,
+        notes,
+        created_at:Date.now()
+      };
+      state.payments.unshift(item);
+      saveLocal();
+      closeModal();
+      renderPayments();
+      toast('Payment saved: ₹'+amount);
+      return;
+    }
+
+    try{
+      const saved=await api('/api/payments',{
+        method:'POST',
+        body:JSON.stringify({
+          employee_id:empId,
+          employee_name:empName,
+          amount,
+          payment_date:date,
+          notes
+        })
+      });
+      state.payments.unshift(saved);
+      state.payments.sort((a,b)=>(b.payment_date||'').localeCompare(a.payment_date||'')||(b.created_at||0)-(a.created_at||0));
+      closeModal();
+      renderPayments();
+      toast('Payment saved: ₹'+amount);
+    }catch(e){
+      const err=$('#pay-error');err.textContent=e.message;err.classList.remove('hidden');
+    }
+  }
+  async function removePayment(id, amount){
+    if(!confirm('Delete this payment of ₹'+(amount||'')+'?'))return;
+    if(state.local){
+      state.payments=state.payments.filter(p=>p.id!==id);
+      saveLocal();
+      renderPayments();
+      toast('Payment deleted');
+      return;
+    }
+    try{
+      await api('/api/payments?id='+encodeURIComponent(id),{method:'DELETE'});
+      state.payments=state.payments.filter(p=>p.id!==id);
+      renderPayments();
+      toast('Payment deleted');
+    }catch(e){
+      toast(e.message);
+    }
+  }
   async function mark(id,status){state.attendance[id]=status;if(state.local){saveLocal();render();return}try{await api('/api/attendance',{method:'POST',body:JSON.stringify({employeeId:id,date:today(),status})});render()}catch(e){toast(e.message==='AUTH'?'Session expired.':'Could not save attendance.')}}
-  function bindMain(){$('#add-person').onclick=()=>openEmployee();$('#nav-today').onclick=()=>$('#top').scrollIntoView({behavior:'smooth'});$('#nav-people').onclick=()=>$('#people').scrollIntoView({behavior:'smooth'});$('#nav-add').onclick=()=>openEmployee();document.querySelectorAll('[data-person]').forEach(b=>b.onclick=()=>openCalendar(b.dataset.person))}
+  function bindMain(){
+    $('#add-person').onclick=()=>openEmployee();
+    const addPayBtn=$('#add-payment-btn');
+    if(addPayBtn) addPayBtn.onclick=()=>openPaymentModal();
+    $('#nav-today').onclick=()=>$('#top').scrollIntoView({behavior:'smooth'});
+    $('#nav-people').onclick=()=>$('#people').scrollIntoView({behavior:'smooth'});
+    const navPay=$('#nav-payments');
+    if(navPay) navPay.onclick=()=>$('#payments').scrollIntoView({behavior:'smooth'});
+    $('#nav-add').onclick=()=>openEmployee();
+    document.querySelectorAll('[data-person]').forEach(card=>{
+      card.onclick=e=>{
+        const del=e.target.closest('[data-del]');
+        if(del){
+          e.stopPropagation();
+          removeEmployee(del.dataset.del, del.dataset.name);
+          return;
+        }
+        openCalendar(card.dataset.person);
+      };
+    });
+  }
   function resizeImage(file){return new Promise((resolve,reject)=>{const img=new Image(),fr=new FileReader();fr.onload=()=>img.src=fr.result;fr.onerror=reject;fr.readAsDataURL(file);img.onload=()=>{const max=480,scale=Math.min(1,max/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);resolve(c.toDataURL('image/jpeg',.82))};img.onerror=reject})}
-  function openEmployee(id=''){const p=state.employees.find(x=>x.id===id)||{name:'',role:'Team member',photo_data:''},edit=!!id;$('#modal-root').innerHTML='<div class="overlay"><section class="modal"><div class="modal-head"><div><span class="eyebrow muted">Team profile</span><h3>'+(edit?'Edit employee':'Add employee')+'</h3></div><button class="icon-btn" id="close-modal">×</button></div><div class="photo-line"><div id="photo-preview">'+avatar(p,'big')+'</div><div class="photo-actions"><b id="photo-name" style="font-size:12px">'+esc(p.name||'New employee')+'</b><span class="muted" style="font-size:9px">Photo is optional.</span><label class="file-btn">Upload photo<input id="photo-input" class="hidden" type="file" accept="image/*"></label></div></div><label class="field">Name<input id="emp-name" value="'+esc(p.name)+'" placeholder="e.g. Aisha Khan"></label><label class="field">Role<input id="emp-role" value="'+esc(p.role||'Team member')+'" placeholder="e.g. Supervisor"></label><div id="emp-error" class="error hidden"></div><div class="modal-actions">'+(edit?'<button class="btn danger" id="remove-person">Remove</button>':'<span></span>')+'<div class="modal-right"><button class="btn secondary" id="cancel-modal">Cancel</button><button class="btn primary" id="save-person">'+(edit?'Save changes':'Add person')+'</button></div></div></section></div>';$('#close-modal').onclick=closeModal;$('#cancel-modal').onclick=closeModal;$('#photo-input').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{p.photo_data=await resizeImage(f);$('#photo-preview').innerHTML=avatar(p,'big')}catch{toast('Could not read that photo.')}};$('#emp-name').oninput=e=>$('#photo-name').textContent=e.target.value.trim()||'New employee';$('#save-person').onclick=()=>saveEmployee(id,p.photo_data||'');if(edit)$('#remove-person').onclick=()=>removeEmployee(id)}
+  function openEmployee(id=''){const p=state.employees.find(x=>x.id===id)||{name:'',role:'Team member',photo_data:''},edit=!!id;$('#modal-root').innerHTML='<div class="overlay"><section class="modal"><div class="modal-head"><div><span class="eyebrow muted">Team profile</span><h3>'+(edit?'Edit employee':'Add employee')+'</h3></div><button class="icon-btn" id="close-modal">×</button></div><div class="photo-line"><div id="photo-preview">'+avatar(p,'big')+'</div><div class="photo-actions"><b id="photo-name" style="font-size:12px">'+esc(p.name||'New employee')+'</b><span class="muted" style="font-size:9px">Photo is optional.</span><label class="file-btn">Upload photo<input id="photo-input" class="hidden" type="file" accept="image/*"></label></div></div><label class="field">Name<input id="emp-name" value="'+esc(p.name)+'" placeholder="e.g. Aisha Khan"></label><label class="field">Role<input id="emp-role" value="'+esc(p.role||'Team member')+'" placeholder="e.g. Supervisor"></label><div id="emp-error" class="error hidden"></div><div class="modal-actions">'+(edit?'<button class="btn danger" id="remove-person">Remove</button>':'<span></span>')+'<div class="modal-right"><button class="btn secondary" id="cancel-modal">Cancel</button><button class="btn primary" id="save-person">'+(edit?'Save changes':'Add person')+'</button></div></div></section></div>';$('#close-modal').onclick=closeModal;$('#cancel-modal').onclick=closeModal;$('#photo-input').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{p.photo_data=await resizeImage(f);$('#photo-preview').innerHTML=avatar(p,'big')}catch{toast('Could not read that photo.')}};$('#emp-name').oninput=e=>$('#photo-name').textContent=e.target.value.trim()||'New employee';$('#save-person').onclick=()=>saveEmployee(id,p.photo_data||'');if(edit)$('#remove-person').onclick=()=>removeEmployee(id,p.name)}
   function closeModal(){$('#modal-root').innerHTML=''}
   async function saveEmployee(id,photo){const name=$('#emp-name').value.trim(),role=$('#emp-role').value.trim()||'Team member';if(!name){const x=$('#emp-error');x.textContent='Name is required.';x.classList.remove('hidden');return}if(state.local){if(id){const p=state.employees.find(x=>x.id===id);Object.assign(p,{name,role,photo_data:photo||p.photo_data||''})}else state.employees.push({id:'local-'+Date.now(),name,role,photo_data:photo||''});saveLocal();closeModal();render();return}try{if(id)await api('/api/employees?id='+encodeURIComponent(id),{method:'PATCH',body:JSON.stringify({name,role,photoData:photo})});else await api('/api/employees',{method:'POST',body:JSON.stringify({name,role,photoData:photo})});closeModal();bootstrap()}catch(e){const x=$('#emp-error');x.textContent=e.message;x.classList.remove('hidden')}}
-  async function removeEmployee(id){if(!confirm('Remove this employee from the active team?'))return;if(state.local){state.employees=state.employees.filter(x=>x.id!==id);delete state.attendance[id];saveLocal();closeModal();render();return}try{await api('/api/employees?id='+encodeURIComponent(id),{method:'DELETE'});closeModal();bootstrap()}catch(e){toast(e.message)}}
+  async function removeEmployee(id, name='this employee'){if(!confirm('Delete '+name+' from the active team?'))return;if(state.local){state.employees=state.employees.filter(x=>x.id!==id);delete state.attendance[id];saveLocal();closeModal();render();toast('Deleted '+name);return}try{await api('/api/employees?id='+encodeURIComponent(id),{method:'DELETE'});closeModal();bootstrap();toast('Deleted '+name)}catch(e){toast(e.message)}}
   function monthRange(d){const y=d.getFullYear(),m=d.getMonth(),from=y+'-'+String(m+1).padStart(2,'0')+'-01',last=new Date(y,m+1,0).getDate(),to=y+'-'+String(m+1).padStart(2,'0')+'-'+String(last).padStart(2,'0');return{from,to}}
   async function openCalendar(id){state.selected=id;state.month=new Date(new Date().getFullYear(),new Date().getMonth(),1);await renderCalendar()}
   async function renderCalendar(rowsOverride=null){const p=state.employees.find(x=>x.id===state.selected);if(!p)return;let rows=rowsOverride;if(!rows&&!state.local){const r=monthRange(state.month);try{rows=(await api('/api/attendance?employeeId='+encodeURIComponent(state.selected)+'&from='+r.from+'&to='+r.to)).attendance||[]}catch{rows=[]}}if(!rows){rows=[];const r=monthRange(state.month),cur=new Date(r.from),end=new Date(r.to);while(cur<=end){const k=cur.toISOString().slice(0,10),s=state.attendance[state.selected+'|'+k];if(s)rows.push({attendance_date:k,status:s});cur.setDate(cur.getDate()+1)}}
