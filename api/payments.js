@@ -37,11 +37,20 @@ export default async function handler(req, res) {
     }
 
     if (req.method === "POST") {
-      const amount = Number(req.body?.amount);
-      const paymentDate = String(req.body?.payment_date || req.body?.date || todayISO()).trim();
-      const employeeId = req.body?.employee_id || req.body?.employeeId || null;
-      const employeeName = String(req.body?.employee_name || req.body?.employeeName || "General").trim();
-      const notes = String(req.body?.notes || req.body?.description || "").trim();
+      let body = req.body;
+      if (typeof body === "string") {
+        try {
+          body = JSON.parse(body);
+        } catch {
+          body = {};
+        }
+      }
+
+      const amount = Number(body?.amount);
+      const paymentDate = String(body?.payment_date || body?.date || todayISO()).trim();
+      const employeeId = body?.employee_id || body?.employeeId || null;
+      const employeeName = String(body?.employee_name || body?.employeeName || "General").trim();
+      const notes = String(body?.notes || body?.description || "").trim();
 
       if (isNaN(amount) || amount <= 0) {
         return res.status(400).json({ error: "Please enter a valid payment amount." });
@@ -55,11 +64,13 @@ export default async function handler(req, res) {
       const payment = {
         amount,
         payment_date: paymentDate,
-        employee_id: employeeId,
         employee_name: employeeName,
         notes,
         created_at: Date.now(),
       };
+      if (employeeId) {
+        payment.employee_id = employeeId;
+      }
 
       await database.ref(`payments/${newId}`).set(payment);
       return res.status(201).json({ id: newId, ...payment });
@@ -78,6 +89,6 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   } catch (e) {
     console.error(e);
-    return res.status(500).json({ error: "Could not process payment request." });
+    return res.status(500).json({ error: e.message || "Could not process payment request." });
   }
 }
